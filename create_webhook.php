@@ -10,7 +10,7 @@ $auth = $GROWSUMO_PUBLIC_KEY+':'+$GROWSUMO_PRIVATE_KEY;
 
 $data = [
    'event': 'customer_created',
-   'target_url': $ADMIN_BASE_URL+'/posts',
+   'target_url': $ADMIN_BASE_URL+'/partner_check.php',
 ];
 
 curl_setopt($ch, CURLOPT_USERPWD, $auth);
