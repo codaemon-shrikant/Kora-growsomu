@@ -41,7 +41,7 @@ function getPartners() {
 	  } 
 	}
 	curl_close($ch);
-
+	echo $response;
 	return $response;
 }
 
