@@ -1,7 +1,6 @@
 <?php
 include('config.php');
 
-
 print_r($_POST);
 
 //Store data for future reference
@@ -71,10 +70,10 @@ function createCustomer() {
 }
 
 function set_curl() {
-	$ch = curl_init($BASE_URL+'partnerships');
+	$ch = curl_init($BASE_URL.'partnerships');
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-	$auth = $GROWSUMO_PUBLIC_KEY+':'+$GROWSUMO_PRIVATE_KEY;
+	$auth = $GROWSUMO_PUBLIC_KEY.':'.$GROWSUMO_PRIVATE_KEY;
 
 	curl_setopt($ch, CURLOPT_USERPWD, $auth);
 	return $ch;

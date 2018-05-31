@@ -1,16 +1,15 @@
 <?php
-
 include('config.php');
 
-$ch = curl_init($BASE_URL+'webhooks');
+$ch = curl_init($BASE_URL.'webhooks');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: application/json"));
 
-$auth = $GROWSUMO_PUBLIC_KEY+':'+$GROWSUMO_PRIVATE_KEY;
+$auth = $GROWSUMO_PUBLIC_KEY.':'.$GROWSUMO_PRIVATE_KEY;
 
 $data = [
-   'event': 'customer_created',
-   'target_url': $ADMIN_BASE_URL+'/partner_check.php',
+   'event' => 'customer_created',
+   'target_url' => $ADMIN_BASE_URL.'partner_check.php',
 ];
 
 curl_setopt($ch, CURLOPT_USERPWD, $auth);
