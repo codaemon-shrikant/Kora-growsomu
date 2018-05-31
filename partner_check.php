@@ -4,11 +4,11 @@ include('config.php');
 print_r($_POST);
 
 //Store data for future reference
-storeCustomer();
+//storeCustomer();
 
 //getPartners 
 $partners = getPartners();
-
+/*
 //compare partners with the customer created.
 $isPartner = comparePartnerCustomers($partners, $POST)
 
@@ -24,7 +24,7 @@ function comparePartnerCustomers($partners, $POST) {
 function storeCustomer() {
 
 }
-
+*/
 //need to add flag to check if the partner is in the step 1 and only fetch those partners
 function getPartners() {
 	$ch = set_curl();
@@ -35,14 +35,14 @@ function getPartners() {
 
 	if($response === false || $response['http_code'] != 200) {
 		if (curl_error($ch)) {
-	  	$response .= "\n  ". curl_error($ch); 
+	  	$response .= "\n  ". curl_error($ch);
+	  	exit(); 
 	  } 
 	}
-
-	echo($response);
+	return $response;
 }
 
-
+/*
 function createCustomer() {
 
 	$ch = set_curl();
@@ -68,7 +68,7 @@ function createCustomer() {
 
 	echo($response);
 }
-
+*/
 function set_curl() {
 	$ch = curl_init($BASE_URL.'partnerships');
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
