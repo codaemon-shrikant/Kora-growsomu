@@ -4,11 +4,11 @@ include('config.php');
 print_r($_POST);
 
 //Store data for future reference
-//storeCustomer();
+storeCustomer();
 
 //getPartners 
 $partners = getPartners();
-/*
+exit();
 //compare partners with the customer created.
 $isPartner = comparePartnerCustomers($partners, $POST)
 
@@ -24,25 +24,27 @@ function comparePartnerCustomers($partners, $POST) {
 function storeCustomer() {
 
 }
-*/
+
 //need to add flag to check if the partner is in the step 1 and only fetch those partners
 function getPartners() {
 	$ch = set_curl();
 
 	$response = curl_exec($ch);
 
-	curl_close($ch);
-
+	
 	if($response === false || $response['http_code'] != 200) {
 		if (curl_error($ch)) {
 	  	$response .= "\n  ". curl_error($ch);
+	  	curl_close($ch);
 	  	exit(); 
 	  } 
 	}
+	curl_close($ch);
+
 	return $response;
 }
 
-/*
+
 function createCustomer() {
 
 	$ch = set_curl();
@@ -68,12 +70,12 @@ function createCustomer() {
 
 	echo($response);
 }
-*/
+
 function set_curl() {
-	$ch = curl_init($BASE_URL.'partnerships');
+	$ch = curl_init($GLOBALS['BASE_URL'].'partnerships');
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-	$auth = $GROWSUMO_PUBLIC_KEY.':'.$GROWSUMO_PRIVATE_KEY;
+	$auth = $GLOBALS['GROWSUMO_PUBLIC_KEY'].':'.$GLOBALS['GROWSUMO_PRIVATE_KEY'];
 
 	curl_setopt($ch, CURLOPT_USERPWD, $auth);
 	return $ch;
