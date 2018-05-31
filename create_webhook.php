@@ -13,17 +13,18 @@ $data = [
 ];
 
 curl_setopt($ch, CURLOPT_USERPWD, $auth);
+curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
 $response = curl_exec($ch);
 
-curl_close($ch);
 
 if($response === false || $response['http_code'] != 200) {
 	if (curl_error($ch)) {
   	$response .= "\n  ". curl_error($ch); 
   } 
 }
+curl_close($ch);
 
 echo($response);
 
