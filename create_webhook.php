@@ -1,4 +1,7 @@
 <?php
+
+include('config.php');
+
 $ch = curl_init($BASE_URL+'webhooks');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: application/json"));
